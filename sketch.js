@@ -6,5 +6,5 @@ function draw() {
   background(220);
 
   text("this is Lydia", 70, 70);
-  text("Hi, this is Wei" 70, 100);
+  text("Hiiii, this is Wei" 70, 100);
 }
