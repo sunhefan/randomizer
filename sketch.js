@@ -1,4 +1,4 @@
-//let user = {};
+let user = {};
 
 function setup() {
   createCanvas(400, 400);
@@ -12,7 +12,7 @@ function draw() {
 
 }
 
-//let user = {
+let user = {
 firstName: "Lydia",
 lastName: "Lim",
 favoriteColor: "blue",
