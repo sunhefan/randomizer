@@ -1,7 +1,35 @@
-html, body {
+
+
+@import url('https://fonts.googleapis.com/css?family=Fascinate+Inline&display=swap');
+
+
+html {
   margin: 0;
   padding: 0;
 }
+body{
+  font-family: 'Fascinate Inline', cursive;
+
+  margin: auto;
+  width :50%;
+}
 canvas {
   display: block;
+
+}
+
+.randomizeButton{
+color: white;
+padding:20px, 30px;
+background-color:#62DFE9;
+
+}
+
+
+.row{
+display: flex;
+}
+
+.column{
+flex: 50%
 }

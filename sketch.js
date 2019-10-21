@@ -229,10 +229,72 @@ let roster = [{
 ];
 
 let randomIndex;
+//let counter = 0;
+let animating = false;
+
+let canvas;
+//let h1;
+let button;
+
+let slider;
+let inputs= [];
+
+let pokemon = [];
+let imageCounter = 0;
+//let nameP;
+
+function preload() {
+  for (let i = 0; i <= 3; i++) {
+    pokemon[i] = loadImage("assets/pokemon" + i + ".JPG");
+  }
+}
+
+
 
 function setup() {
-  createCanvas(600, 600);
+  canvas = createCanvas(800, 600);
+  canvas.parent("#controlsDiv");
+
+
+  //  h1=createElement('h1', 'This is Lydia');
+
+
+  button = select ('#randButton');
+  button.mousePressed(buttonSetTime);
+  button.class("randomizeButton");
+
+
+
+  button.mouseOver(overclickhere);
+
+
+
+  //  slider=createSlider(30,500,20);
+
+  inputs.push(createInput());
+  inputs[inputs.length-1].parent("inputField");
+
+  //nameP=CreateP('Your name!');
+
+
+
+  colorMode(HSB);
   background(200);
+  textSize(35);
+
+  fill(255);
+  preload();
+  imageMode(CENTER);
+  frameRate(5);
+
+
+
+  text("click to randomize", 100, 100);
+
+  //change one time at once
+  //setTimeout(changeBackground, 1000);
+  //change every second
+  //setInterval(changeBackground, 1000);
 
   // //console.log (roster.length);
   // randomIndex = int(random(roster.length));
@@ -243,18 +305,70 @@ function setup() {
   // //console.log(random);
 }
 
+
+
+
+function overclickhere() {
+  button.style('color', 'white');
+}
+
+
+
+
 function draw() {
 
+  fill(frameCount % 180, 100, 100);
+  // noStroke();
+  if (animating == true) {
+    clear();
+    image(pokemon[imageCounter], width / 2, height / 2);
 
-  //text("this is Lydia", 70, 70);
-  // text("HALOA, this is Wei", 70, 100);
+    if (imageCounter < pokemon.length - 1) {
+      imageCounter++;
+    } else {
+      imageCounter = 0;
+    }
+
+    //ellipse(random(width), random(height), slider.value(), slider.value());
+
+  }
+
 
 }
 
-function mousePressed() {
-  background(random (200,250));
-  randomIndex = int(random(roster.length));
-  text(roster[randomIndex].firstName, 50, 50);
-  roster.splice(randomIndex, 1);
 
+
+
+function randomizer() {
+
+  animating = false;
+  fill(frameCount % 360, 200, 200);
+
+  if (roster[0]) {
+    //  clear();
+    background(random(255), random(255), random(255));
+    randomIndex = int(random(roster.length));
+    text(roster[randomIndex].firstName, width / 2, 50);
+    image(random(pokemon), width / 2, height / 2);
+    roster.splice(randomIndex, 1);
+  } else {
+    //background(random(255), random(255), random(255));
+    text("nothing left ", 100, 100);
+  }
+}
+
+function buttonSetTime() {
+
+  animating = true;
+
+  setTimeout(randomizer, 2000);
+  // h1.html("What is your favorite color?");
+  //createP("My favorite color is blue.");
+}
+
+function keyTyped() {
+  if (key === 'b') {
+    clear();
+  }
+  return false;
 }
